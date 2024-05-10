@@ -34,6 +34,9 @@ public class Pokemon implements Serializable {
     @OneToMany(mappedBy = "pokemon")
     private Set<PokemonAbility> abilities;
 
+    @Column(name = "sprite", nullable = false)
+    private String sprite;
+
     public Long getId() {
         return id;
     }
@@ -66,20 +69,28 @@ public class Pokemon implements Serializable {
         this.height = height;
     }
 
-    public boolean isIs_default() {
-        return isDefault;
-    }
-
-    public void setIs_default(boolean is_default) {
-        this.isDefault = is_default;
-    }
-
     public Set<PokemonAbility> getAbilities() {
         return abilities;
     }
 
     public void setAbilities(Set<PokemonAbility> abilities) {
         this.abilities = abilities;
+    }
+
+    public boolean isDefault() {
+        return isDefault;
+    }
+
+    public void setDefault(boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    public String getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(String sprite) {
+        this.sprite = sprite;
     }
 
 }

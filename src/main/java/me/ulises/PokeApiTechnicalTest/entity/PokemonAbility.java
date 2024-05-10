@@ -1,5 +1,7 @@
 package me.ulises.PokeApiTechnicalTest.entity;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pokemon_ability")
-public class PokemonAbility {
+public class PokemonAbility implements Serializable {
     
     @Id
     @JsonIgnore
