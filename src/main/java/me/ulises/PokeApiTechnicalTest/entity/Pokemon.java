@@ -1,14 +1,14 @@
 package me.ulises.PokeApiTechnicalTest.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,18 +16,23 @@ import jakarta.persistence.Table;
 public class Pokemon implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
-    @Column(name = "name", length = 250, nullable = false, unique = true)
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
+
+    @Column(name = "weight", nullable = false)
+    private int weight;
+
+    @Column(name = "height", nullable = false)
+    private int height;
 
     @Column(name = "is_default", nullable = false)
     @JsonProperty(value = "is_default")
     private boolean isDefault;
 
-    @Column(name = "height", nullable = false)
-    private int height;
+    @OneToMany(mappedBy = "pokemon")
+    private Set<PokemonAbility> abilities;
 
     public Long getId() {
         return id;
@@ -45,12 +50,12 @@ public class Pokemon implements Serializable {
         this.name = name;
     }
 
-    public boolean isDefault() {
-        return isDefault;
+    public int getWeight() {
+        return weight;
     }
 
-    public void setDefault(boolean isDefault) {
-        this.isDefault = isDefault;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public int getHeight() {
@@ -59,6 +64,22 @@ public class Pokemon implements Serializable {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public boolean isIs_default() {
+        return isDefault;
+    }
+
+    public void setIs_default(boolean is_default) {
+        this.isDefault = is_default;
+    }
+
+    public Set<PokemonAbility> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(Set<PokemonAbility> abilities) {
+        this.abilities = abilities;
     }
 
 }
