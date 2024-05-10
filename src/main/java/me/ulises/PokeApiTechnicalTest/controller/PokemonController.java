@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import me.ulises.PokeApiTechnicalTest.entity.Pokemon;
 import me.ulises.PokeApiTechnicalTest.service.PokemonService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -20,11 +21,11 @@ public class PokemonController {
     private PokemonService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> findAndSave(@PathVariable("id") String id) {
+    public ResponseEntity<Pokemon> findAndSave(@PathVariable("id") String id) {
         try {
             return new ResponseEntity<>(service.findAndSave(id), HttpStatus.OK);
         } catch (Exception ex) {
-            return new ResponseEntity<>("An error occurred", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
     

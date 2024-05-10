@@ -1,4 +1,4 @@
-package me.ulises.PokeApiTechnicalTest.security;
+package me.ulises.PokeApiTechnicalTest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
