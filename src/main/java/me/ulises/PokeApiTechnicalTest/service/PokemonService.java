@@ -32,7 +32,13 @@ public class PokemonService {
     public Pokemon findAndSave(String id) {
         String uri = POKEAPI_URI + "/pokemon/" + id;
         RestTemplate restTemplate = new RestTemplate();
-        Pokemon result = restTemplate.getForObject(uri, Pokemon.class);
+        Pokemon result = null;
+        try {
+             result = restTemplate.getForObject(uri, Pokemon.class);
+        } catch (Exception e) {
+            logger.error("error fetching pokemon from: " + uri);
+            return null;
+        }
         logger.info("fetching pokemon from: " + uri);
         if (pokemonRepository.findById(result.getId()).isPresent()) {
             logger.info("pokemon already exists in database, returning it...");
